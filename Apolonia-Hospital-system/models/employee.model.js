@@ -14,9 +14,7 @@ const employeeSchema = new mongoose.Schema(
             default: 'Last Name'
         },
         department: {
-            type: 'String',
-            required: true,
-            ref: {},
+            type: mongoose.Schema.Types.ObjectId, ref:'Department',
         },
     }
 )
