@@ -1,0 +1,40 @@
+const User = require('../models/employee.model');
+
+// Controller for Registering an employee
+// POST /api/signup
+exports.registerEmployee = async (req, res) => {
+  try {
+        const { firstName, lastName, department, email } = req.body;
+        
+        //Validation
+        if (!firstName || !lastName || !department || !email) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        const existingUser = await User.findOne({email});
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
+        }
+
+        const newEmployee =  new User({
+            email,
+            firstName,
+            lastName,
+            department,
+        })
+
+        await newEmployee.save();
+
+        if (newEmployee) {
+            return res.status(201).json({
+                success: true,
+                message: "Sign up successful",
+                newEmployee
+            })
+        }
+
+    } catch (error) {
+        console.error("Error registering employee:", error.message);
+        return res.status(500).json({ success: false, message: error.message || "Internal server error" });
+    }
+}

@@ -3,6 +3,9 @@ const app = express();
 require('dotenv').config();
 const connectDb = require('./config/db');
 const cors = require('cors');
+const morgan = require('morgan');
+const authRoutes = require('./routes/auth.route');
+const departmentRoutes = require('./routes/department.route');
 
 //DB Connection
 connectDb();
@@ -10,8 +13,11 @@ connectDb();
 //Middlewares
 app.use(express.json()); 
 app.use(cors())
+app.use(morgan('dev'));  
 
 //Routes
+app.use('/api', authRoutes, departmentRoutes);
+
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Server Running...'

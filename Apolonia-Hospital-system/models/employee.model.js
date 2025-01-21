@@ -17,7 +17,13 @@ const employeeSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId, ref: 'Department',
             required: true,
         },
-    }
+        email: {
+            type: 'String',
+            required: true,
+            unique: true,
+        },
+    },
+    {timestamps: true}
 )
 
 module.exports = mongoose.model('Employee', employeeSchema);
