@@ -1,4 +1,5 @@
 const User = require('../models/employee.model');
+const Department = require('../models/department.model');
 
 // Controller for Registering an employee
 // POST /api/signup
@@ -15,12 +16,17 @@ exports.registerEmployee = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
         }
+      
+      const departmentData = await Department.findOne({ name: department });
+      if (!departmentData) {
+          return res.status(404).json({ message: "Department not found" });
+      }
 
         const newEmployee =  new User({
             email,
             firstName,
             lastName,
-            department,
+            department: departmentData._id,
         })
 
         await newEmployee.save();

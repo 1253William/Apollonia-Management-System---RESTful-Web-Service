@@ -1,5 +1,5 @@
 const Department = require('../models/department.model');
-
+const User = require('../models/employee.model');
 
 // Controller for adding a new department
 // POST /api/department
@@ -38,15 +38,22 @@ exports.addDepartment = async (req, res) => {
 // GET /api/department/:id
 exports.getDepartment = async (req, res) => {
     try {
-        const department = await Department.findById(req.params.id);
+        const departmentId = req.params.id
+        const department = await Department.findById(departmentId);
 
         if (!department) {
             return res.status(404).json({ message: "Department not found" });
         }
 
+        const employees = await User.find({ department: departmentId }).select('firstName lastName email');
+        
         return res.status(200).json({
             success: true,
-            department
+            data: {
+                department: department.name,
+                departmentEmployees: employees.length,
+                employees
+            }
         });
     } catch (error) {
         console.error("Error fetching department:", error.message);
