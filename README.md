@@ -40,7 +40,17 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 
 
 # API Design (<CREATE><READ><UPDATE><DELETE>):
-1. 
+# Basic API Endpoints
+* Departments API
+1.GET /departments - Get all departments
+2.POST /departments - Create a new department
+
+* Employees API
+3.GET /employees - Get all employees
+4.POST /employees - Add a new employee
+5.GET /employees/:id - Get employee by ID
+6.PUT /employees/:id - Update employee details
+7.DELETE /employees/:id - Delete an employee
 
 # Technologies & Frameworks:
 * Nodejs v.20+
@@ -48,3 +58,4 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 * MongoDB v.8 ( Mongoose )
 * REST API
 * GRAPHQL 
+
