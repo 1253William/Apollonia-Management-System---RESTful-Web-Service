@@ -43,14 +43,15 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 # Basic API Endpoints
 * Departments API
 1.GET /departments - Get all departments
-2.POST /departments - Create a new department
+2.GET/department/:id - Get department
+3.POST /departments - Create a new department
 
 * Employees API
-3.GET /employees - Get all employees
-4.POST /employees - Add a new employee
-5.GET /employees/:id - Get employee by ID
-6.PUT /employees/:id - Update employee details
-7.DELETE /employees/:id - Delete an employee
+4.GET /employees - Get all employees
+5.POST /employees - Add a new employee
+6.GET /employees/:id - Get employee by ID
+7.PUT /employees/:id - Update employee details
+8.DELETE /employees/:id - Delete an employee
 
 # Technologies & Frameworks:
 * Nodejs v.20+
