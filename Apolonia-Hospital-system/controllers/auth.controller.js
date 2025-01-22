@@ -5,10 +5,10 @@ const Department = require('../models/department.model');
 // POST /api/signup
 exports.registerEmployee = async (req, res) => {
   try {
-        const { firstName, lastName, department, email } = req.body;
+        const { firstName, lastName, departments, email } = req.body;
         
         //Validation
-        if (!firstName || !lastName || !department || !email) {
+        if (!firstName || !lastName || !departments || !email) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -17,7 +17,7 @@ exports.registerEmployee = async (req, res) => {
             return res.status(400).json({ message: "User already exists" });
         }
       
-      const departmentData = await Department.findOne({ name: department });
+      const departmentData = await Department.findOne({ name: departments });
       if (!departmentData) {
           return res.status(404).json({ message: "Department not found" });
       }
@@ -26,10 +26,12 @@ exports.registerEmployee = async (req, res) => {
             email,
             firstName,
             lastName,
-            department: departmentData._id,
+            // department: departmentData._id,
+             departments: departmentData.map(dept => dept._id)
         })
 
-        await newEmployee.save();
+      await newEmployee.save();
+      await newEmployee.populate('departments');
 
         if (newEmployee) {
             return res.status(201).json({

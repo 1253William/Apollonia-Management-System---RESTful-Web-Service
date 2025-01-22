@@ -13,10 +13,10 @@ const employeeSchema = new mongoose.Schema(
             required: true,
             default: 'Last Name'
         },
-        department: {
+        departments: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'Department',
             required: true,
-        },
+        }],
         email: {
             type: 'String',
             required: true,

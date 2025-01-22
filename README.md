@@ -43,7 +43,7 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 # Basic API Endpoints
 * Departments API
 1.GET /departments - Get all departments
-2.GET/department/:id - Get department
+2.GET/department/:id - Get a  department
 3.POST /departments - Create a new department
 
 * Employees API

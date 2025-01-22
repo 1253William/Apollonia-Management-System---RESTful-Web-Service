@@ -66,15 +66,46 @@ exports.getDepartment = async (req, res) => {
 // GET /api/departments
 exports.getAllDepartments = async (req, res) => {
     try {
+        // const departments = await Department.find();
+
+        // if (!departments) {
+        //     return res.status(404).json({ message: "No departments found" });
+        // }
+
+
+        // return res.status(200).json({
+        //     success: true,
+        //     data: {
+        //         totalDepartments: departments.length,
+        //         departments
+        //     }
+        // });
+
+          // Get all departments
         const departments = await Department.find();
 
-        if (!departments) {
+         if (!departments) {
             return res.status(404).json({ message: "No departments found" });
         }
 
+        
+        // For each department, get its employees
+        const departmentsWithEmployees = await Promise.all(
+            departments.map(async (department) => {
+                const employees = await User.find({ department: department._id })
+                    .select('firstName lastName email');
+                
+                return {    
+                    departmentName: department.name,
+                    totalEmployees: employees.length,
+                  }
+            })
+        );
+        
         return res.status(200).json({
             success: true,
-            departments
+            totalDepartments: departments.length,
+            data: departmentsWithEmployees
         });
 
     } catch (error) {
