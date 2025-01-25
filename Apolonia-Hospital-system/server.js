@@ -15,9 +15,10 @@ app.use(express.json());
 app.use(cors())
 app.use(morgan('dev'));  
 
-//Routes
+//Routes middleware
 app.use('/api', authRoutes, departmentRoutes);
 
+//Test route
 app.get('/', (req, res) => {
     res.status(200).json({
         message: 'Server Running...'

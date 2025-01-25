@@ -6,7 +6,7 @@
 
 # Your Challenge
 
-Your task will be to create a fundamental employee management CRUD web app to store information about employees and departments, and perform CRUD operations on the employee data, using Node.js and MongoDB. To do this, you will create a Node.js server and MongoDB database, create employees and departments collections, and let users perform CRUD operations on the database via first REST API and secondly QraphQl.
+Your task will be to create a fundamental employee management CRUD web app to store information about employees and departments, and perform CRUD operations on the employee data, using Node.js and MongoDB. To do this, you will create a Node.js server and MongoDB database, create employees and departments collections, and let users perform CRUD operations on the database via first REST API and secondly graphQl.
 
 # Objectives of the System
 Create a database with employees and departments
@@ -23,13 +23,14 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 # System Design:
 * Create a database with employees(medical staff) and departments(clinical departments) [Database]
 * Create a web UI for employees and departments management [Web UI]
-* Perform CRUD (Create, Read, Update, Delete) operations on the employees and departments database using the web UI.
+* Perform CRUD (Create, Read, Update, Delete) operations on the employees and departments database using the web UI. [API]
 
 # Database Design:
 1. Employee Collection:
  - Name [type: string]
  - Surname [type: string]
  - Department [type: string]
+ - Email [type: string]
 
 2. Departments Collection:
  - General Dentistry [type: string]
@@ -43,12 +44,12 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 # Basic API Endpoints
 * Departments API
 1.GET /departments - Get all departments
-2.GET/department/:id - Get a  department
-3.POST /departments - Create a new department
+2.GET /department/:id - Get a department
+3.POST /department - Create a new department
 
 * Employees API
 4.GET /employees - Get all employees
-5.POST /employees - Add a new employee
+5.POST /employees or POST /signup - Add a new employee (for Admins only) or register a new employee
 6.GET /employees/:id - Get employee by ID
 7.PUT /employees/:id - Update employee details
 8.DELETE /employees/:id - Delete an employee
@@ -59,4 +60,7 @@ Perform CRUD (Create, Read, Update, Delete) operations on the employees and depa
 * MongoDB v.8 ( Mongoose )
 * REST API
 * GRAPHQL 
+* Docker
+* Swagger
+* Github Actions
 

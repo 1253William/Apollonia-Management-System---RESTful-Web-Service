@@ -4,21 +4,22 @@ const mongoose = require('mongoose');
 const employeeSchema = new mongoose.Schema(
     {
         firstName: {
-            type: 'String',
+            type: String,
             required: true,
             default: 'First Name'
         },
         lastName: {
-            type: 'String',
+            type: String,
             required: true,
             default: 'Last Name'
         },
-        departments: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Department',
+       departments: [{
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: 'Department',
             required: true,
         }],
         email: {
-            type: 'String',
+            type: String,
             required: true,
             unique: true,
         },

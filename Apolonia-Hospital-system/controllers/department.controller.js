@@ -41,11 +41,15 @@ exports.getDepartment = async (req, res) => {
         const departmentId = req.params.id
         const department = await Department.findById(departmentId);
 
+        console.log('Incoming Department ID:', departmentId);
+        console.log('Department ID Type:', typeof departmentId);
+        
+
         if (!department) {
             return res.status(404).json({ message: "Department not found" });
         }
 
-        const employees = await User.find({ department: departmentId }).select('firstName lastName email');
+        const employees = await User.find({departments: { $in: [departmentId] }}).select('firstName lastName email');
         
         return res.status(200).json({
             success: true,
@@ -95,7 +99,8 @@ exports.getAllDepartments = async (req, res) => {
                 const employees = await User.find({ department: department._id })
                     .select('firstName lastName email');
                 
-                return {    
+                return {
+                    departmentId: department.id,
                     departmentName: department.name,
                     totalEmployees: employees.length,
                   }
