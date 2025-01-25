@@ -13,7 +13,6 @@ Create a database with employees and departments
 Create a web UI for employees and departments management
 Perform CRUD (Create, Read, Update, Delete) operations on the employees and departments database using the web UI
 
-///To Digitize Clinical 
 # Features
 * Records of Hospital:
 * Employees and departments,
