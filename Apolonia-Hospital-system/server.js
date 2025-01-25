@@ -6,6 +6,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const authRoutes = require('./routes/auth.route');
 const departmentRoutes = require('./routes/department.route');
+const employeeRoutes = require('./routes/employee.route');
 
 //DB Connection
 connectDb();
@@ -16,7 +17,7 @@ app.use(cors())
 app.use(morgan('dev'));  
 
 //Routes middleware
-app.use('/api', authRoutes, departmentRoutes);
+app.use('/api', authRoutes, departmentRoutes, employeeRoutes);
 
 //Test route
 app.get('/', (req, res) => {

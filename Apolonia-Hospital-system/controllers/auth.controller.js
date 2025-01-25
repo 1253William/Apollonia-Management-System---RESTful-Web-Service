@@ -27,7 +27,7 @@ exports.registerEmployee = async (req, res) => {
             firstName,
             lastName,
             // department: departmentData._id,
-             departments: departmentData.map(dept => dept._id)
+             departments: [departmentData._id]
         })
 
       await newEmployee.save();
